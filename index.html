@@ -3,286 +3,415 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Izartech — Tarjeta Digital</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <title>Izartech — Consultoría IT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:   #0a0a0a;
-      --white:   #f5f4f0;
-      --accent:  #c8f53e;
-      --mid:     #1a1a1a;
-      --muted:   #3a3a3a;
-      --border:  rgba(255,255,255,0.08);
+      --teal:       #9FCCCD;
+      --teal-light: #b8d9da;
+      --teal-dark:  #6eaaab;
+      --bg:         #0d1117;
+      --bg2:        #161b22;
+      --bg3:        #1c2330;
+      --white:      #e8edf2;
+      --muted:      #6b7a8d;
+      --border:     rgba(159,204,205,0.12);
     }
 
     html, body {
       min-height: 100%;
-      background: var(--black);
-      color: var(--white);
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       -webkit-font-smoothing: antialiased;
+      background: var(--bg);
+      color: var(--white);
     }
 
     body {
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       min-height: 100vh;
-      padding: 24px 16px;
+      padding: 28px 16px 48px;
       background:
-        radial-gradient(ellipse 80% 60% at 70% 10%, rgba(200,245,62,0.07) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 20% 90%, rgba(200,245,62,0.05) 0%, transparent 55%),
-        var(--black);
+        radial-gradient(ellipse 90% 50% at 50% -10%, rgba(159,204,205,0.1) 0%, transparent 60%),
+        var(--bg);
     }
 
     .card {
       width: 100%;
-      max-width: 420px;
-      background: var(--mid);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      overflow: hidden;
-      animation: fadeUp 0.7s cubic-bezier(.22,1,.36,1) both;
+      max-width: 400px;
+      animation: rise 0.65s cubic-bezier(.22,1,.36,1) both;
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── HEADER ── */
-    .header {
-      background: linear-gradient(135deg, #111 0%, #1c1c1c 100%);
-      padding: 36px 32px 28px;
+    /* ── HERO ── */
+    .hero {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px 20px 0 0;
+      padding: 32px 28px 26px;
       position: relative;
-      border-bottom: 1px solid var(--border);
+      overflow: hidden;
     }
 
-    .logo-row {
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(159,204,205,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Logo tipo wordmark */
+    .wordmark {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 20px;
+      gap: 12px;
+      margin-bottom: 22px;
     }
 
-    .logo-box {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: var(--accent);
+    .wm-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      border: 1.5px solid var(--teal);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 22px;
-      color: var(--black);
-      letter-spacing: -1px;
       flex-shrink: 0;
     }
 
-    .brand-name {
-      font-family: 'Syne', sans-serif;
-      font-size: 26px;
+    .wm-icon svg {
+      width: 22px; height: 22px;
+    }
+
+    .wm-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wm-name {
+      font-size: 22px;
       font-weight: 800;
       letter-spacing: -0.5px;
+      color: var(--white);
       line-height: 1;
     }
 
-    .brand-tag {
+    .wm-sub {
       font-size: 11px;
       font-weight: 400;
-      color: var(--accent);
-      letter-spacing: 2px;
+      color: var(--teal);
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-top: 4px;
+      margin-top: 3px;
     }
 
-    .badge {
+    .pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(200,245,62,0.12);
-      border: 1px solid rgba(200,245,62,0.25);
-      color: var(--accent);
+      background: rgba(159,204,205,0.1);
+      border: 1px solid rgba(159,204,205,0.2);
+      color: var(--teal-light);
       font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.5px;
-      padding: 5px 12px;
+      padding: 4px 12px;
       border-radius: 100px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
-    .badge::before {
-      content: '';
+    .dot {
       width: 6px; height: 6px;
-      background: var(--accent);
+      background: var(--teal);
       border-radius: 50%;
-      animation: pulse 2s infinite;
+      animation: blink 2s infinite;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.5; transform: scale(0.8); }
+    @keyframes blink {
+      0%,100% { opacity:1; } 50% { opacity:0.3; }
     }
 
     .tagline {
-      font-family: 'Syne', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 1.55;
-      color: rgba(245,244,240,0.85);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: rgba(232,237,242,0.75);
     }
 
-    /* ── SERVICES ── */
-    .services {
-      padding: 24px 32px;
-      border-bottom: 1px solid var(--border);
+    .tagline strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* ── TEAM ── */
+    .team-section {
+      background: var(--bg3);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      padding: 20px 28px;
+      border-top: 1px solid var(--border);
     }
 
     .section-label {
       font-size: 10px;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 14px;
     }
 
+    .team {
+      display: flex;
+      gap: 10px;
+    }
+
+    .member {
+      flex: 1;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .member-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+
+    .member-role {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--teal);
+      line-height: 1.4;
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      background: var(--bg2);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-top: 1px solid var(--border);
+      padding: 20px 28px;
+    }
+
     .chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 7px;
     }
 
     .chip {
-      font-size: 12px;
-      font-weight: 400;
-      color: rgba(245,244,240,0.7);
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 6px 14px;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: rgba(232,237,242,0.65);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 5px 12px;
       border-radius: 100px;
       transition: all 0.2s;
     }
 
     .chip:hover {
-      background: rgba(200,245,62,0.1);
-      border-color: rgba(200,245,62,0.3);
-      color: var(--accent);
+      background: rgba(159,204,205,0.1);
+      border-color: rgba(159,204,205,0.25);
+      color: var(--teal-light);
     }
 
     /* ── CONTACT ── */
     .contact {
-      padding: 24px 32px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-top: 1px solid rgba(159,204,205,0.08);
+      padding: 20px 28px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 9px;
     }
 
     .contact-item {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       text-decoration: none;
       color: inherit;
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.03);
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: var(--bg3);
       border: 1px solid var(--border);
-      transition: all 0.22s;
+      transition: all 0.2s;
     }
 
     .contact-item:hover {
-      background: rgba(200,245,62,0.07);
-      border-color: rgba(200,245,62,0.2);
-      transform: translateX(4px);
+      border-color: rgba(159,204,205,0.3);
+      background: rgba(159,204,205,0.06);
+      transform: translateX(3px);
     }
 
-    .icon {
-      width: 38px; height: 38px;
-      border-radius: 10px;
-      background: rgba(200,245,62,0.1);
+    .ci-icon {
+      width: 34px; height: 34px;
+      border-radius: 9px;
+      background: rgba(159,204,205,0.1);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
     }
 
-    .icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .ci-icon svg {
+      width: 16px; height: 16px;
+      stroke: var(--teal);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
-    .contact-text { display: flex; flex-direction: column; }
-    .contact-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
-    .contact-value { font-size: 14px; font-weight: 400; color: var(--white); }
+    .ci-body { display: flex; flex-direction: column; }
+    .ci-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1px; }
+    .ci-value { font-size: 13px; font-weight: 500; color: var(--white); }
+
+    /* ── SOCIALS ── */
+    .socials {
+      background: var(--bg2);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-top: 1px solid var(--border);
+      padding: 16px 28px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .soc-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 6px;
+      border-radius: 10px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .soc-btn:hover {
+      color: var(--teal);
+      border-color: rgba(159,204,205,0.25);
+      background: rgba(159,204,205,0.06);
+    }
+
+    .soc-btn svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
 
     /* ── CTA ── */
     .cta {
-      padding: 0 32px 32px;
+      padding: 16px 28px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-top: none;
     }
 
     .btn-save {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 9px;
       width: 100%;
-      padding: 16px;
-      border-radius: 14px;
-      background: var(--accent);
-      color: var(--black);
-      font-family: 'Syne', sans-serif;
-      font-size: 15px;
+      padding: 15px;
+      border-radius: 12px;
+      background: var(--teal);
+      color: var(--bg);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.2px;
       text-decoration: none;
       border: none;
       cursor: pointer;
       transition: all 0.2s;
+      letter-spacing: 0.2px;
     }
 
     .btn-save:hover {
-      background: #d9ff4d;
+      background: var(--teal-light);
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(200,245,62,0.25);
+      box-shadow: 0 8px 24px rgba(159,204,205,0.25);
     }
 
-    .btn-save:active { transform: translateY(0); }
-
-    .btn-save svg { width: 18px; height: 18px; fill: none; stroke: var(--black); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    .btn-save svg { width: 17px; height: 17px; fill: none; stroke: var(--bg); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 
     /* ── FOOTER ── */
     .footer {
-      padding: 16px 32px 20px;
+      padding: 14px 28px 18px;
       text-align: center;
       font-size: 11px;
       color: var(--muted);
-      border-top: 1px solid var(--border);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-top: 1px solid rgba(159,204,205,0.06);
+      border-radius: 0 0 20px 20px;
     }
 
-    .footer span { color: var(--accent); }
+    .footer span { color: var(--teal); }
   </style>
 </head>
 <body>
 
 <div class="card">
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="logo-row">
-      <div class="logo-box">IZ</div>
-      <div>
-        <div class="brand-name">Izartech</div>
-        <div class="brand-tag">Asunción · Paraguay</div>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wordmark">
+      <div class="wm-icon">
+        <!-- Ícono tipo circuito/tech minimalista -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="#9FCCCD" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="5" height="5" rx="1"/>
+          <rect x="17" y="7" width="5" height="5" rx="1"/>
+          <rect x="9.5" y="12" width="5" height="5" rx="1"/>
+          <line x1="7" y1="9.5" x2="9.5" y2="9.5"/>
+          <line x1="14.5" y1="9.5" x2="17" y2="9.5"/>
+          <line x1="12" y1="12" x2="12" y2="9.5"/>
+          <line x1="9.5" y1="9.5" x2="14.5" y2="9.5"/>
+        </svg>
+      </div>
+      <div class="wm-text">
+        <span class="wm-name">Izartech</span>
+        <span class="wm-sub">Consultoría IT · Paraguay</span>
       </div>
     </div>
 
-    <div class="badge">Disponible para proyectos</div>
+    <div class="pill"><div class="dot"></div>Disponible para proyectos</div>
 
     <p class="tagline">
-      Transformamos la operación de tu empresa con tecnología de punta. No vendemos software — construimos ventajas competitivas.
+      <strong>Transformamos tu empresa</strong> con soluciones tecnológicas efectivas. No vendemos software — construimos ventajas competitivas para el Paraguay que viene.
     </p>
+  </div>
+
+  <!-- EQUIPO -->
+  <div class="team-section">
+    <div class="section-label"> Parte de nuestro equipo</div>
+    <div class="team">
+      <div class="member">
+        <div class="member-name">Jhony</div>
+        <div class="member-role">SAP · BTP · Cloud · Integraciones</div>
+      </div>
+      <div class="member">
+        <div class="member-name">Dai</div>
+        <div class="member-role">Datos · AWS · SQL · Arquitectura</div>
+      </div>
+    </div>
   </div>
 
   <!-- SERVICIOS -->
@@ -290,54 +419,74 @@
     <div class="section-label">Servicios</div>
     <div class="chips">
       <span class="chip">ERP Personalizado</span>
-      <span class="chip">Consultoría ERP</span>
+      <span class="chip">Consultoría SAP</span>
       <span class="chip">Soporte ERP</span>
       <span class="chip">Automatizaciones</span>
       <span class="chip">IA Aplicada</span>
       <span class="chip">Gobierno de Datos</span>
+      <span class="chip">Cloud AWS</span>
+      <span class="chip">BTP</span>
     </div>
   </div>
 
   <!-- CONTACTO -->
   <div class="contact">
+    <div class="section-label" style="margin-bottom:6px">Contacto</div>
+
     <a class="contact-item" href="tel:+595972713037">
-      <div class="icon">
+      <div class="ci-icon">
         <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 11.74 19.79 19.79 0 01.46 3.1 2 2 0 012.44 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.37a16 16 0 006.72 6.72l1.73-1.73a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       </div>
-      <div class="contact-text">
-        <span class="contact-label">Teléfono</span>
-        <span class="contact-value">+595 972 713 037</span>
+      <div class="ci-body">
+        <span class="ci-label">Teléfono</span>
+        <span class="ci-value">+595 972 713 037</span>
       </div>
     </a>
 
     <a class="contact-item" href="mailto:izartech@outlook.es">
-      <div class="icon">
+      <div class="ci-icon">
         <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       </div>
-      <div class="contact-text">
-        <span class="contact-label">Email</span>
-        <span class="contact-value">izartech@outlook.es</span>
+      <div class="ci-body">
+        <span class="ci-label">Email</span>
+        <span class="ci-value">izartech@outlook.es</span>
       </div>
     </a>
 
     <a class="contact-item" href="https://www.izartech.com" target="_blank" rel="noopener">
-      <div class="icon">
+      <div class="ci-icon">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
       </div>
-      <div class="contact-text">
-        <span class="contact-label">Web</span>
-        <span class="contact-value">www.izartech.com</span>
+      <div class="ci-body">
+        <span class="ci-label">Web</span>
+        <span class="ci-value">www.izartech.com</span>
       </div>
     </a>
 
-    <a class="contact-item" href="#">
-      <div class="icon">
-        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    <a class="contact-item" href="https://www.instagram.com/izartech/" target="_blank" rel="noopener">
+      <div class="ci-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
       </div>
-      <div class="contact-text">
-        <span class="contact-label">Ubicación</span>
-        <span class="contact-value">Asunción, Paraguay</span>
+      <div class="ci-body">
+        <span class="ci-label">Instagram</span>
+        <span class="ci-value">@izartech</span>
       </div>
+    </a>
+  </div>
+
+  <!-- REDES SOCIALES -->
+  <div class="socials">
+    <a class="soc-btn" href="https://www.facebook.com/profile.php?id=61580911553627" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      Facebook
+    </a>
+    <a class="soc-btn" href="https://www.youtube.com/@SAPJhony" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58a2.78 2.78 0 001.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0d1117"/></svg>
+      YouTube
+    </a>
+    <a class="soc-btn" href="https://www.tiktok.com/@jhonysap7" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+      TikTok
     </a>
   </div>
 
@@ -350,7 +499,7 @@
   </div>
 
   <div class="footer">
-    El Paraguay que viene — <span>Izartech 2025</span>
+    Asunción, Paraguay · <span>izartech.com</span>
   </div>
 
 </div>
