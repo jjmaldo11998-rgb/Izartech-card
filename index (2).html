@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Izartech — Tarjeta Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0a0a0a;
+      --white:   #f5f4f0;
+      --accent:  #c8f53e;
+      --mid:     #1a1a1a;
+      --muted:   #3a3a3a;
+      --border:  rgba(255,255,255,0.08);
+    }
+
+    html, body {
+      min-height: 100%;
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px 16px;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 10%, rgba(200,245,62,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 20% 90%, rgba(200,245,62,0.05) 0%, transparent 55%),
+        var(--black);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      animation: fadeUp 0.7s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(135deg, #111 0%, #1c1c1c 100%);
+      padding: 36px 32px 28px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .logo-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--black);
+      letter-spacing: -1px;
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .brand-tag {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(200,245,62,0.12);
+      border: 1px solid rgba(200,245,62,0.25);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .tagline {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.55;
+      color: rgba(245,244,240,0.85);
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(245,244,240,0.7);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 6px 14px;
+      border-radius: 100px;
+      transition: all 0.2s;
+    }
+
+    .chip:hover {
+      background: rgba(200,245,62,0.1);
+      border-color: rgba(200,245,62,0.3);
+      color: var(--accent);
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 24px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      transition: all 0.22s;
+    }
+
+    .contact-item:hover {
+      background: rgba(200,245,62,0.07);
+      border-color: rgba(200,245,62,0.2);
+      transform: translateX(4px);
+    }
+
+    .icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(200,245,62,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    .contact-text { display: flex; flex-direction: column; }
+    .contact-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+    .contact-value { font-size: 14px; font-weight: 400; color: var(--white); }
+
+    /* ── CTA ── */
+    .cta {
+      padding: 0 32px 32px;
+    }
+
+    .btn-save {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      background: var(--accent);
+      color: var(--black);
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-save:hover {
+      background: #d9ff4d;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(200,245,62,0.25);
+    }
+
+    .btn-save:active { transform: translateY(0); }
+
+    .btn-save svg { width: 18px; height: 18px; fill: none; stroke: var(--black); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 16px 32px 20px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer span { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-row">
+      <div class="logo-box">IZ</div>
+      <div>
+        <div class="brand-name">Izartech</div>
+        <div class="brand-tag">Asunción · Paraguay</div>
+      </div>
+    </div>
+
+    <div class="badge">Disponible para proyectos</div>
+
+    <p class="tagline">
+      Transformamos la operación de tu empresa con tecnología de punta. No vendemos software — construimos ventajas competitivas.
+    </p>
+  </div>
+
+  <!-- SERVICIOS -->
+  <div class="services">
+    <div class="section-label">Servicios</div>
+    <div class="chips">
+      <span class="chip">ERP Personalizado</span>
+      <span class="chip">Consultoría ERP</span>
+      <span class="chip">Soporte ERP</span>
+      <span class="chip">Automatizaciones</span>
+      <span class="chip">IA Aplicada</span>
+      <span class="chip">Gobierno de Datos</span>
+    </div>
+  </div>
+
+  <!-- CONTACTO -->
+  <div class="contact">
+    <a class="contact-item" href="tel:+595972713037">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 11.74 19.79 19.79 0 01.46 3.1 2 2 0 012.44 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.37a16 16 0 006.72 6.72l1.73-1.73a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      </div>
+      <div class="contact-text">
+        <span class="contact-label">Teléfono</span>
+        <span class="contact-value">+595 972 713 037</span>
+      </div>
+    </a>
+
+    <a class="contact-item" href="mailto:izartech@outlook.es">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div class="contact-text">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">izartech@outlook.es</span>
+      </div>
+    </a>
+
+    <a class="contact-item" href="https://www.izartech.com" target="_blank" rel="noopener">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      </div>
+      <div class="contact-text">
+        <span class="contact-label">Web</span>
+        <span class="contact-value">www.izartech.com</span>
+      </div>
+    </a>
+
+    <a class="contact-item" href="#">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="contact-text">
+        <span class="contact-label">Ubicación</span>
+        <span class="contact-value">Asunción, Paraguay</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- BOTÓN GUARDAR -->
+  <div class="cta">
+    <a class="btn-save" href="Izartech_Company.vcf" download="Izartech_Company.vcf">
+      <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      Guardar Contacto
+    </a>
+  </div>
+
+  <div class="footer">
+    El Paraguay que viene — <span>Izartech 2025</span>
+  </div>
+
+</div>
+
+</body>
+</html>
