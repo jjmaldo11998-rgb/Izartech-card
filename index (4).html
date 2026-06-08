@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Izartech — Consultoría IT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:       #9FCCCD;
+      --teal-light: #b8d9da;
+      --teal-dark:  #6eaaab;
+      --bg:         #0d1117;
+      --bg2:        #161b22;
+      --bg3:        #1c2330;
+      --white:      #e8edf2;
+      --muted:      #6b7a8d;
+      --border:     rgba(159,204,205,0.12);
+    }
+
+    html, body {
+      min-height: 100%;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background: var(--bg);
+      color: var(--white);
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 28px 16px 48px;
+      background:
+        radial-gradient(ellipse 90% 50% at 50% -10%, rgba(159,204,205,0.1) 0%, transparent 60%),
+        var(--bg);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+      animation: rise 0.65s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px 20px 0 0;
+      padding: 32px 28px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(159,204,205,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Logo tipo wordmark */
+    .wordmark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .wm-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      border: 1.5px solid var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .wm-icon svg {
+      width: 22px; height: 22px;
+    }
+
+    .wm-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wm-name {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .wm-sub {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--teal);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(159,204,205,0.1);
+      border: 1px solid rgba(159,204,205,0.2);
+      color: var(--teal-light);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+    }
+
+    .dot {
+      width: 6px; height: 6px;
+      background: var(--teal);
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%,100% { opacity:1; } 50% { opacity:0.3; }
+    }
+
+    .tagline {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: rgba(232,237,242,0.75);
+    }
+
+    .tagline strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* ── TEAM ── */
+    .team-section {
+      background: var(--bg3);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      padding: 20px 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .team {
+      display: flex;
+      gap: 10px;
+    }
+
+    .member {
+      flex: 1;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .member-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+
+    .member-role {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--teal);
+      line-height: 1.4;
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      background: var(--bg2);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-top: 1px solid var(--border);
+      padding: 20px 28px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .chip {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: rgba(232,237,242,0.65);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 5px 12px;
+      border-radius: 100px;
+      transition: all 0.2s;
+    }
+
+    .chip:hover {
+      background: rgba(159,204,205,0.1);
+      border-color: rgba(159,204,205,0.25);
+      color: var(--teal-light);
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-top: 1px solid rgba(159,204,205,0.08);
+      padding: 20px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .contact-item:hover {
+      border-color: rgba(159,204,205,0.3);
+      background: rgba(159,204,205,0.06);
+      transform: translateX(3px);
+    }
+
+    .ci-icon {
+      width: 34px; height: 34px;
+      border-radius: 9px;
+      background: rgba(159,204,205,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ci-icon svg {
+      width: 16px; height: 16px;
+      stroke: var(--teal);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .ci-body { display: flex; flex-direction: column; }
+    .ci-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1px; }
+    .ci-value { font-size: 13px; font-weight: 500; color: var(--white); }
+
+    /* ── SOCIALS ── */
+    .socials {
+      background: var(--bg2);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-top: 1px solid var(--border);
+      padding: 16px 28px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .soc-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 6px;
+      border-radius: 10px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .soc-btn:hover {
+      color: var(--teal);
+      border-color: rgba(159,204,205,0.25);
+      background: rgba(159,204,205,0.06);
+    }
+
+    .soc-btn svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+
+    /* ── CTA ── */
+    .cta {
+      padding: 16px 28px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-top: none;
+    }
+
+    .btn-save {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: 100%;
+      padding: 15px;
+      border-radius: 12px;
+      background: var(--teal);
+      color: var(--bg);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.2px;
+    }
+
+    .btn-save:hover {
+      background: var(--teal-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(159,204,205,0.25);
+    }
+
+    .btn-save svg { width: 17px; height: 17px; fill: none; stroke: var(--bg); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 14px 28px 18px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-top: 1px solid rgba(159,204,205,0.06);
+      border-radius: 0 0 20px 20px;
+    }
+
+    .footer span { color: var(--teal); }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wordmark">
+      <div class="wm-icon">
+        <!-- Ícono tipo circuito/tech minimalista -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="#9FCCCD" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="5" height="5" rx="1"/>
+          <rect x="17" y="7" width="5" height="5" rx="1"/>
+          <rect x="9.5" y="12" width="5" height="5" rx="1"/>
+          <line x1="7" y1="9.5" x2="9.5" y2="9.5"/>
+          <line x1="14.5" y1="9.5" x2="17" y2="9.5"/>
+          <line x1="12" y1="12" x2="12" y2="9.5"/>
+          <line x1="9.5" y1="9.5" x2="14.5" y2="9.5"/>
+        </svg>
+      </div>
+      <div class="wm-text">
+        <span class="wm-name">Izartech</span>
+        <span class="wm-sub">Consultoría IT · Paraguay</span>
+      </div>
+    </div>
+
+    <div class="pill"><div class="dot"></div>Disponible para proyectos</div>
+
+    <p class="tagline">
+      <strong>Transformamos tu empresa</strong> con soluciones tecnológicas efectivas. No vendemos software — construimos ventajas competitivas para el Paraguay que viene.
+    </p>
+  </div>
+
+  <!-- EQUIPO -->
+  <div class="team-section">
+    <div class="section-label">Nuestro equipo</div>
+    <div class="team">
+      <div class="member">
+        <div class="member-name">Jhony</div>
+        <div class="member-role">SAP · BTP · Cloud · Integraciones</div>
+      </div>
+      <div class="member">
+        <div class="member-name">Dai</div>
+        <div class="member-role">Datos · AWS · SQL · Arquitectura</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <div class="services">
+    <div class="section-label">Servicios</div>
+    <div class="chips">
+      <span class="chip">ERP Personalizado</span>
+      <span class="chip">Consultoría SAP</span>
+      <span class="chip">Soporte ERP</span>
+      <span class="chip">Automatizaciones</span>
+      <span class="chip">IA Aplicada</span>
+      <span class="chip">Gobierno de Datos</span>
+      <span class="chip">Cloud AWS</span>
+      <span class="chip">BTP</span>
+    </div>
+  </div>
+
+  <!-- CONTACTO -->
+  <div class="contact">
+    <div class="section-label" style="margin-bottom:6px">Contacto</div>
+
+    <a class="contact-item" href="tel:+595972713037">
+      <div class="ci-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 11.74 19.79 19.79 0 01.46 3.1 2 2 0 012.44 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.37a16 16 0 006.72 6.72l1.73-1.73a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      </div>
+      <div class="ci-body">
+        <span class="ci-label">Teléfono</span>
+        <span class="ci-value">+595 972 713 037</span>
+      </div>
+    </a>
+
+    <a class="contact-item" href="mailto:izartech@outlook.es">
+      <div class="ci-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div class="ci-body">
+        <span class="ci-label">Email</span>
+        <span class="ci-value">izartech@outlook.es</span>
+      </div>
+    </a>
+
+    <a class="contact-item" href="https://www.izartech.com" target="_blank" rel="noopener">
+      <div class="ci-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      </div>
+      <div class="ci-body">
+        <span class="ci-label">Web</span>
+        <span class="ci-value">www.izartech.com</span>
+      </div>
+    </a>
+
+    <a class="contact-item" href="https://www.instagram.com/izartech/" target="_blank" rel="noopener">
+      <div class="ci-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </div>
+      <div class="ci-body">
+        <span class="ci-label">Instagram</span>
+        <span class="ci-value">@izartech</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- REDES SOCIALES -->
+  <div class="socials">
+    <a class="soc-btn" href="https://www.facebook.com/profile.php?id=61580911553627" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      Facebook
+    </a>
+    <a class="soc-btn" href="https://www.youtube.com/@SAPJhony" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58a2.78 2.78 0 001.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0d1117"/></svg>
+      YouTube
+    </a>
+    <a class="soc-btn" href="https://www.tiktok.com/@jhonysap7" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+      TikTok
+    </a>
+  </div>
+
+  <!-- BOTÓN GUARDAR -->
+  <div class="cta">
+    <a class="btn-save" href="Izartech_Company.vcf" download="Izartech_Company.vcf">
+      <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      Guardar Contacto
+    </a>
+  </div>
+
+  <div class="footer">
+    Asunción, Paraguay · <span>izartech.com</span>
+  </div>
+
+</div>
+
+<!-- ── SHAKE EFFECT ── -->
+<div id="shake-hint" style="
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
+  background:rgba(159,204,205,0.15); border:1px solid rgba(159,204,205,0.3);
+  color:#9FCCCD; font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:12px; padding:8px 18px; border-radius:100px;
+  pointer-events:none; opacity:1;
+  transition: opacity 1s ease;
+  display:flex; align-items:center; gap:8px;
+  backdrop-filter: blur(8px);
+">
+  <span style="font-size:16px">📳</span> Agitá el teléfono
+</div>
+
+<style>
+  .card { transform-origin: center center; }
+  .shake-item {
+    transition: transform 0s, opacity 0s;
+    will-change: transform;
+  }
+  .shake-item.settling {
+    transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 1.8s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+  .shake-overlay {
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 999;
+  }
+  @keyframes shakeBody {
+    0%   { transform: translate(0,0) rotate(0deg); }
+    15%  { transform: translate(-6px, 4px) rotate(-2deg); }
+    30%  { transform: translate(5px, -5px) rotate(1.5deg); }
+    45%  { transform: translate(-4px, 3px) rotate(-1deg); }
+    60%  { transform: translate(3px, -2px) rotate(0.8deg); }
+    75%  { transform: translate(-2px, 1px) rotate(-0.4deg); }
+    100% { transform: translate(0,0) rotate(0deg); }
+  }
+</style>
+
+<script>
+(function() {
+  const SHAKE_THRESHOLD = 18;   // aceleración mínima para disparar
+  const SETTLE_DELAY    = 2000; // ms antes de volver
+  const COOLDOWN        = 3000; // ms entre shakes
+
+  let lastShake    = 0;
+  let isShaking    = false;
+  let lastAcc      = { x: 0, y: 0, z: 0 };
+  let settleTimer  = null;
+  let permissionAsked = false;
+
+  const card     = document.querySelector('.card');
+  const hint     = document.getElementById('shake-hint');
+  const children = card.querySelectorAll(
+    '.hero, .team-section, .services, .contact, .socials, .cta, .footer, ' +
+    '.wordmark, .pill, .tagline, .section-label, .chips, .team, ' +
+    '.contact-item, .soc-btn, .btn-save'
+  );
+
+  // Guardar posición original
+  children.forEach(el => {
+    el.classList.add('shake-item');
+    el.dataset.ox = '0';
+    el.dataset.oy = '0';
+  });
+
+  // Ocultar hint después de 4s
+  setTimeout(() => { hint.style.opacity = '0'; }, 4000);
+  setTimeout(() => { hint.style.display = 'none'; }, 5000);
+
+  function randomBetween(a, b) {
+    return a + Math.random() * (b - a);
+  }
+
+  function explode() {
+    if (isShaking) return;
+    isShaking = true;
+    lastShake = Date.now();
+
+    // Vibración si disponible
+    if (navigator.vibrate) navigator.vibrate([60, 30, 40]);
+
+    // Flash visual
+    const overlay = document.createElement('div');
+    overlay.className = 'shake-overlay';
+    overlay.style.background = 'rgba(159,204,205,0.08)';
+    document.body.appendChild(overlay);
+    setTimeout(() => overlay.remove(), 300);
+
+    // Sacudir la tarjeta entera
+    card.style.animation = 'shakeBody 0.5s ease';
+    setTimeout(() => { card.style.animation = ''; }, 500);
+
+    // Dispersar cada elemento
+    children.forEach(el => {
+      el.classList.remove('settling');
+      const dx = randomBetween(-40, 40);
+      const dy = randomBetween(-35, 35);
+      const rot = randomBetween(-12, 12);
+      const sc  = randomBetween(0.85, 1.1);
+      el.style.transform = `translate(${dx}px, ${dy}px) rotate(${rot}deg) scale(${sc})`;
+      el.style.opacity   = randomBetween(0.4, 0.9).toString();
+      el.dataset.ox = dx.toString();
+      el.dataset.oy = dy.toString();
+    });
+
+    // Después de SETTLE_DELAY, volver suavemente
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(settle, SETTLE_DELAY);
+  }
+
+  function settle() {
+    children.forEach(el => {
+      el.classList.add('settling');
+      el.style.transform = 'translate(0,0) rotate(0deg) scale(1)';
+      el.style.opacity   = '1';
+    });
+    setTimeout(() => {
+      children.forEach(el => el.classList.remove('settling'));
+      isShaking = false;
+    }, 1900);
+  }
+
+  function handleMotion(e) {
+    const acc = e.accelerationIncludingGravity || e.acceleration;
+    if (!acc) return;
+
+    const now = Date.now();
+    if (now - lastShake < COOLDOWN) return;
+
+    const dx = Math.abs((acc.x || 0) - lastAcc.x);
+    const dy = Math.abs((acc.y || 0) - lastAcc.y);
+    const dz = Math.abs((acc.z || 0) - lastAcc.z);
+
+    lastAcc = { x: acc.x || 0, y: acc.y || 0, z: acc.z || 0 };
+
+    if (dx + dy + dz > SHAKE_THRESHOLD) {
+      explode();
+    }
+  }
+
+  function startListening() {
+    window.addEventListener('devicemotion', handleMotion);
+  }
+
+  // iOS 13+ requiere permiso explícito
+  if (typeof DeviceMotionEvent !== 'undefined' &&
+      typeof DeviceMotionEvent.requestPermission === 'function') {
+
+    // Mostrar botón de permiso solo en iOS
+    const permBtn = document.createElement('div');
+    permBtn.innerHTML = '<span style="font-size:16px">📳</span> Activar efecto agitar';
+    Object.assign(permBtn.style, {
+      position: 'fixed', bottom: '24px', left: '50%',
+      transform: 'translateX(-50%)',
+      background: 'rgba(159,204,205,0.2)',
+      border: '1px solid rgba(159,204,205,0.4)',
+      color: '#9FCCCD',
+      fontFamily: "'Plus Jakarta Sans', sans-serif",
+      fontSize: '13px', padding: '10px 20px',
+      borderRadius: '100px', cursor: 'pointer',
+      zIndex: '1000', display: 'flex',
+      alignItems: 'center', gap: '8px',
+      backdropFilter: 'blur(8px)'
+    });
+
+    permBtn.addEventListener('click', () => {
+      DeviceMotionEvent.requestPermission().then(state => {
+        if (state === 'granted') {
+          startListening();
+          permBtn.remove();
+          hint.style.display  = 'flex';
+          hint.style.opacity  = '1';
+          setTimeout(() => { hint.style.opacity = '0'; }, 3000);
+          setTimeout(() => { hint.style.display = 'none'; }, 4000);
+        }
+      }).catch(console.error);
+    });
+
+    // Ocultar hint original en iOS hasta que den permiso
+    hint.style.display = 'none';
+    document.body.appendChild(permBtn);
+
+  } else {
+    // Android y otros — sin permiso, escuchar directo
+    startListening();
+  }
+
+})();
+</script>
+
+</body>
+</html>
